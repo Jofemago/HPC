@@ -53,20 +53,32 @@ int main(int argc, char *argv[]){
         cerr << "lo siento falle: "<< e.what() << '\n';
     }
     
-   vector<vector<int>> A(num, vector<int> (num));
-   vector<vector<int>> B(num, vector<int> (num));
-   vector<vector<int>> R(num, vector<int> (num));
-   srand(time(nullptr));
-   relleno(A, num);
-   mostrar(A,num);
-   cout << "X" << endl;
+    vector<vector<int>> A(num, vector<int> (num));
+    vector<vector<int>> B(num, vector<int> (num));
+    vector<vector<int>> R(num, vector<int> (num));
+    srand(time(nullptr));
+    relleno(A, num);
+    //mostrar(A,num);
+    //cout << "X" << endl;
     relleno(B, num);
-   mostrar(B,num);
-   cout << "=" << endl;
-   multMat(A, B, R, num);
-   mostrar(R, num);
+    //mostrar(B,num);
+    //cout << "=" << endl;
 
-   //cout << A << endl;
+    //calculo del tiempo
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+
+    start = std::chrono::system_clock::now();
+
+    multMat(A, B, R, num);
+    //mostrar(R, num);
+
+    end = std::chrono::system_clock::now();
+    double time = std::chrono::duration_cast<std::chrono::seconds>
+                             (end-start).count();
+
+    cout << time << ","; 
+
+    //cout << A << endl;
     //cout<<num << endl;
 
     return 0;

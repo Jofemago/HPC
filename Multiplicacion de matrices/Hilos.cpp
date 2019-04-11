@@ -54,31 +54,45 @@ int main(int argc, char *argv[]){
     }
 
 
+    //variables para medicion de tiempo
+    
+
     vector<vector<int>> A(num, vector<int> (num));
     vector<vector<int>> B(num, vector<int> (num));
     vector<vector<int>> R(num, vector<int> (num));
     srand(time(nullptr));
     relleno(A, num);
-    mostrar(A,num);
+    /*mostrar(A,num);
     cout << "X" << endl;
     relleno(B, num);
     mostrar(B,num);
     cout << "=" << endl;
-
-
+    */
+   //unsigned t0, t1;
+    
     //creacion de hilos
     vector<thread> th;
     //thread th[num];
     //operacion de la respuesta de forma concurrente
+    
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+
+    start = std::chrono::system_clock::now();
     for(int i = 0; i < num; i++)           
         th.push_back(thread(multMat,ref(A), ref(B), ref(R), num, i));
           
     for(int i = 0; i < num; i++)
         th[i].join();
 
-    
-    mostrar(R, num);
+    end = std::chrono::system_clock::now();
+    double time = std::chrono::duration_cast<std::chrono::seconds>
+                             (end-start).count();
+   
 
+    cout << time << ","; 
+    /*
+    mostrar(R, num);
+    */
     return 0;
 
 
