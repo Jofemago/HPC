@@ -85,7 +85,7 @@ int main(int argc, char *argv[]){
         th[i].join();
 
     end = std::chrono::system_clock::now();
-    double time = std::chrono::duration_cast<std::chrono::seconds>
+    double time = std::chrono::duration_cast<std::chrono::milliseconds>
                              (end-start).count();
    
 
