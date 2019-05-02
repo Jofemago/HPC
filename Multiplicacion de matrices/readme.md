@@ -19,5 +19,7 @@ El algoritmo calculará el tiempo de ejecución de la operacion multiplicar matr
 ## Hadware
 
 Computador: Lenovo z50-70
+
 Procesador: i7 3ra Generación
+
 Ram: 8 GigaBytes
