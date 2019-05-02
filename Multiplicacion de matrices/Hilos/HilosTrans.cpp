@@ -91,7 +91,7 @@ int main(int argc, char *argv[]){
 
     start = std::chrono::system_clock::now();
     for(int i = 0; i < num; i++)           
-        th.push_back(thread(multMat,ref(A), ref(B), ref(R), num, i));
+        th.push_back(thread(multMat,ref(A), ref(Btransp), ref(R), num, i));
           
     for(int i = 0; i < num; i++)
         th[i].join();
