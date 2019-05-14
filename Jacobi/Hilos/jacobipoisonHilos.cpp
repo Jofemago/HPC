@@ -44,8 +44,9 @@ void jacobi(int nsweeps, int n, double* u, double* f){
 }
 
 void prueba(string a, double *u, int n){
+    cout<<a<<endl;
     for(int i=0;i<=n;i++){
-        cout<<a<<endl;
+        
         cout<<u[i]<<" ";
     }
 }
