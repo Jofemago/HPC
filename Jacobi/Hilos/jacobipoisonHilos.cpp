@@ -43,6 +43,13 @@ void jacobi(int nsweeps, int n, double* u, double* f){
     delete [] utmp;
 }
 
+void prueba(string a, double *u, int n){
+    for(int i=0;i<=n;i++){
+        cout<<a<<endl;
+        cout<<u[i]<<" ";
+    }
+}
+
 /*
 
 void write_solution(int n, double* u, const char* fname){
