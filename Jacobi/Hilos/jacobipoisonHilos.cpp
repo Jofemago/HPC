@@ -5,6 +5,9 @@
 
 #include <chrono>
 #include<iostream>
+//#include<bits/stdc++.h>
+
+
 
 using namespace std;
 //#include <omp.h>
@@ -16,7 +19,41 @@ using namespace std;
  * discretized by n+1 equally spaced mesh points on [0,1].
  * u is subject to Dirichlet boundary conditions specified in
  * the u[0] and u[n] entries of the initial vector.
+ * 
+ * 
  */
+void imprimir(string a, double *u, int n){
+
+
+    cout<<a<<endl;
+    for(int i=0;i<=n;i++){
+
+        
+        cout<<u[i]<<" ";
+    }
+}
+
+
+void iteratetemp(int n, int h2,  double *u, double *utmp, double *f){
+
+    /* Old data in u; new data in utmp */
+        for (int i = 1; i < n; ++i){
+            utmp[i] = (u[i-1] + u[i+1] + h2*f[i])/2;
+        }
+        //imprimir("iteracion funcion: ", utmp, n);
+}
+
+
+void iterateU(int n, int h2,  double *u, double *utmp,double *f){
+
+    /* Old data in utmp; new data in u */
+        for (int i = 1; i < n; ++i){
+            u[i] = (utmp[i-1] + utmp[i+1] + h2*f[i])/2;
+        }
+        //imprimir("iteracion funcion: ", utmp, n);
+}
+
+
 void jacobi(int nsweeps, int n, double* u, double* f){
     double h  = 1.0 / n;
     double h2 = h*h;
@@ -27,18 +64,33 @@ void jacobi(int nsweeps, int n, double* u, double* f){
     utmp[0] = u[0];
     utmp[n] = u[n];
 
+    cout << "h2 "<< h2 << endl;
+    imprimir("inicio f: ", f, n);
+    imprimir("inicio: ", utmp, n);
+    imprimir("inicio: ", u, n);
     for (int sweep = 0; sweep < nsweeps; sweep += 2) {
+        
+        iteratetemp(n,h2,u,utmp,f);
+        iterateU(n,h2,u,utmp,f);
+        
 
-        /* Old data in u; new data in utmp */
+
+/*
+       
         for (int i = 1; i < n; ++i){
             utmp[i] = (u[i-1] + u[i+1] + h2*f[i])/2;
         }
 
-        /* Old data in utmp; new data in u */
+      
         for (int i = 1; i < n; ++i){
             u[i] = (utmp[i-1] + utmp[i+1] + h2*f[i])/2;
-        }
+}*/
+
+
     }
+
+    imprimir("fin: ", utmp, n);
+    imprimir("fin: ", u, n);
 
     delete [] utmp;
 }
