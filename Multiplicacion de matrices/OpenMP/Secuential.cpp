@@ -9,7 +9,7 @@ using namespace std;
 
 void _multMat( vector<vector<int>> &A, vector<vector<int>> B, vector<vector<int>> &C, int num){
     /*multiplicacion de matrices de manera serial*/
-    #pragma omp for num_threads(5)
+    #pragma omp for
     
         //multiplicación 
         for(int i = 0; i < num; i++)
@@ -93,12 +93,15 @@ int main(int argc, char *argv[]){
     cout << time << ","; 
     */
 
+
+   mostrar(R, num);
+    mostrar(R, num);
     vector<vector<int>> R_openmp(num, vector<int> (num));
     multMat(A, B, R, num);
-    multMat(A, B, R_openmp, num);
+    _multMat(A, B, R, num);
 
     mostrar(R, num);
-    mostrar(R_openmp, num);
+    mostrar(R, num);
     //cout << A << endl;
     //cout<<num << endl;
 
