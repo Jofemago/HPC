@@ -12,14 +12,14 @@ std::uniform_real_distribution<> dis(-1.0, 1.0);
 
 
 
-double dartboard(int dardos){
+double dartboard(int dardos,int factorHilos){
 
   assert(dardos > 0);
 
   //double x = dis(gen);
   //int hits = 0;
   int th_id;
-  int p= omp_get_num_procs() * 2;
+  int p= omp_get_num_procs() * factorHilos;//2;
   //cout << "procesos: "<< p << endl;
   double res = 0.0;
   vector<int> hits(p);
@@ -69,7 +69,20 @@ double dartboard(int dardos){
 
 int main(int argc, char *argv[]){
 
-  int dardos = 0;
+  int dardos = 0, factorHilos=2;
+
+  try{
+
+      factorHilos = stoi(argv[2]);
+      //cout << "numero de dardos establecido en: " << dardos << endl;
+  }
+  catch(const exception& e)
+  {
+
+      factorHilos = 2;
+  }
+  
+
   try{
 
       dardos = stoi(argv[1]);
@@ -88,10 +101,10 @@ int main(int argc, char *argv[]){
 
   start = std::chrono::system_clock::now();
 
-  dartboard(dardos);
+  dartboard(dardos,factorHilos);
 
   end = std::chrono::system_clock::now();
-  double time = std::chrono::duration_cast<std::chrono::milliseconds>
+  double time = std::chrono::duration_cast<std::chrono::nanoseconds>
                            (end-start).count();
 
   cout << time << ",";

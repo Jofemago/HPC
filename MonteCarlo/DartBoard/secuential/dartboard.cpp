@@ -26,7 +26,7 @@ double dartboard(int dardos){
 
     }
   }
-  cout << "hits " << hits << endl;
+  //cout << "hits " << hits<<",";
   //cout << "el numero de dardos: "<< dardos << endl;
   double res = 4.0 * hits * 1.0/dardos;
   //cout << "el resultado es: " << res << endl;
@@ -61,10 +61,10 @@ int main(int argc, char *argv[]){
   dartboard(dardos);
 
   end = std::chrono::system_clock::now();
-  double time = std::chrono::duration_cast<std::chrono::milliseconds>
+  double time = std::chrono::duration_cast<std::chrono::nanoseconds>
                            (end-start).count();
 
-  cout << time << ",";
+  cout << time<<",";
 
 
   return 0;
