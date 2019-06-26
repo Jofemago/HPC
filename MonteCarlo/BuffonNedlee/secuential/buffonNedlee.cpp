@@ -42,7 +42,7 @@ void simulation(int n, int t, int d, puntos &xs, puntos &angulosradians){
     }
     
     double picalculate = 2 * ((double(n) * double(d))/(double(t) * enlinea));
-    cout << "value of pi: " << picalculate << endl;
+    //cout << "value of pi: " << picalculate << endl;
 
 }
 
@@ -71,8 +71,16 @@ int main(int argc, char *argv[]){
 
     launchNedlee(n,t, xs, angulos, angulosRadians);
     
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    start = std::chrono::system_clock::now();
+    
     simulation(n,t,d,xs,angulosRadians);
     
+    end = std::chrono::system_clock::now();
+    double time = std::chrono::duration_cast<std::chrono::nanoseconds>
+                           (end-start).count();
+
+    cout << time<<",";
     //cout << "los valores son: " << n << t << d << endl;
 
 
