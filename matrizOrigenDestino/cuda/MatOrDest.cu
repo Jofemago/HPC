@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   }
 
   if (tc != 0 && ts != 0)  {
-    cout << tc << " " << ts << endl;
+    cout << tc << " " << ts <<< endl;
   }
 
 }
